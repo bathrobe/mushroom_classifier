@@ -1,12 +1,13 @@
 ---
-title: Minimal JS Image Classifiers
+title: JS Mushroom Classifier
 ---
 
+You can try out my mushroom image classifier at the link below:
 - [Single file](1single.html)
-- [Multi-file](2multi.html)
-- [Parallel](3parallel.html)
 
-Linked above are some examples of vision classifiers using JavaScript from [fast.ai](https://course.fast.ai) staff and students. Also, check out these other examples from students, along with the [fast.ai forums](https://forums.fast.ai) username of each contributor:
+There are five strains it can classify: elm oyster, blue oyster, chestnut, lion's mane, and shitake.
+
+I made this app for the project in the second lesson of the [fast.ai](https://course.fast.ai) course, *Practical Deep Learning for Coders*. Here are some apps from other students:
 
 - [predict_image](https://github.com/nuvic/predict_image) h/t nuvic
 - [Dog vs Cat](https://edwardjross.github.io/gradio-image-demo/) h/t edwardjross 
