@@ -2,6 +2,7 @@
   <style>
     body {
       background-image: url("https://openclipart.org/image/800px/192051");
+      background-color: darkslategrey;
       background-size: 200px;
       background-repeat: repeat;
     }
@@ -11,10 +12,11 @@
       align-items: center;
     }
     .main-ui {
-      background: #0d0d0d;
+      background: #828992ea;
       width: 700px;
       display: flex-column;
       justify-content: center;
+      padding: 40px;
     }
 
     .main-ui > \* {
@@ -24,6 +26,9 @@
       color: gray;
     }
 
+    .photo {
+      color: lightgray;
+    }
     .instruction {
       color: lightgray;
       font-size: 2rem;
@@ -31,6 +36,7 @@
 
     .results {
       color: lightgray;
+      font-size: 1.5rem;
     }
   </style>
 </head>
@@ -38,13 +44,12 @@
 <div class="container">
   <div class="main-ui">
     <h2 class="instruction">1. Upload a mushroom picture.</h2>
-    <input id="photo" type="file" />
+    <input class="photo" type="file" />
     <h2 class="instruction">2. See what kind of mushroom it is!</h2>
-    <p>
+    <p class="results">
       There are five possibilities: elm oyster, blue oyster, shitake, chestnut,
       and lion's mane.
     </p>
-    <div id="results"></div>
   </div>
 </div>
 <script>
