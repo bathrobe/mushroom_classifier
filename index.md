@@ -1,17 +1,58 @@
----
-title: JS Mushroom Classifier
----
+<head><style>
+body {
+background-image: url("https://openclipart.org/image/800px/192051");
+background-size: 200px;
+background-repeat: repeat;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-ui {
+background: #0d0d0d; width:700px; display:flex-column; justify-content:center;
+}
 
-You can try out my mushroom image classifier at the link below:
-- [Single file](1single.html)
+.main-ui > \*{
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+padding: 20px;
+font-size: 1.5rem;
+color: gray;
+}
 
-There are five strains it can classify: elm oyster, blue oyster, chestnut, lion's mane, and shitake.
+.instruction {
+color: lightgray;
+font-size:2rem;
+}
 
-I made this app for the project in the second lesson of the [fast.ai](https://course.fast.ai) course, *Practical Deep Learning for Coders*. Here are some apps from other students:
+.results {
+color: lightgray;
+}
 
-- [predict_image](https://github.com/nuvic/predict_image) h/t nuvic
-- [Dog vs Cat](https://edwardjross.github.io/gradio-image-demo/) h/t edwardjross 
-- [Food classifier](https://suvash.github.io/very-basic-gradio-api-app/) h/t suvash 
-- [webcam interface](https://misza222.github.io/hf_api_predict/) h/t misza222
-- [Get to know your pet](https://gettoknowyourpet.com/) h/t aabdalla
-- [pyscript app](https://matdmiller.github.io/fastai-huggingface-sample-web-app1/pyscript-classifier.html) h/t matdmiller
+</style></head>
+
+<div class="container">
+<div class="main-ui">
+<h2 class="instruction">1. Upload a mushroom picture.</h2>
+<input id="photo" type="file" >
+<h2 class="instruction">2. See what kind of mushroom it is!</h2>
+<div id="results"></div>
+</div></div>
+<script>
+  async function loaded(reader) {
+    const response = await fetch('https://bathrobe-four.hf.space/api/predict', {
+      method: "POST", body: JSON.stringify({ "data": [reader.result] }),
+      headers: { "Content-Type": "application/json" }
+    });
+    const json = await response.json();
+    const label = json['data'][0]['confidences'][0]['label'];
+    const confidence = json['data'][0]['confidences'][0]['confidence']
+    results.innerHTML = `<br/><img src="${reader.result}" width="300"> <p style="font-size:1.5rem;color:lightgrey">${label} - I am ${Math.round(confidence * 100)}% sure.</p>`
+  }
+  function read() {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => loaded(reader))
+    reader.readAsDataURL(photo.files[0]);
+  }
+  photo.addEventListener('input', read);
+</script>
